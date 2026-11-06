@@ -221,7 +221,8 @@ export class DataService {
   }
 
   //  lista de proyectos entera
-  getProyectos() {
+  // Devuelve la lista de proyectos entera
+  getProyectos(): any[] {
     return Object.values(this.proyectosData);
   }
 }

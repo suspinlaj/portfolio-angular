@@ -1,0 +1,38 @@
+<section id="proyectos">
+    <h2>{{ getTexto('sec-proyectos') }}</h2>
+
+    <!-- Cuadrícula de proyectos generada automáticamente -->
+    <div class="galeria">
+        
+        <!-- Angular repetirá este <article> por cada proyecto en tu DataService -->
+        @for (proyecto of proyectos; track proyecto.titulo) {
+        <article>
+            <img [src]="proyecto.imagenPrincipal" [alt]="'Captura de ' + proyecto.titulo">
+            <h3>{{ proyecto.titulo }}</h3>
+            
+            <!-- Descripción que cambia según el idioma seleccionado -->
+            <p>{{ proyecto.descripcionLarga[dataService.idiomaActual()] }}</p>
+            
+            <ul>
+                <!-- Bucle anidado para imprimir cada tecnología (tag) -->
+                @for (tech of proyecto.tecnologias[dataService.idiomaActual()]; track tech) {
+                <li>{{ tech }}</li>
+                }
+            </ul>
+
+            <div>
+                <a href="#" class="btn-abrir-video">{{ getTexto('btn-video') }}</a>
+                <a [href]="proyecto.githubUrl" target="_blank">{{ getTexto('btn-github') }}</a>
+            </div>
+        </article>
+        }
+
+    </div>
+
+    <!-- Ver más proyectos en GitHub -->
+    <div class="ver-mas-proyectos">
+        <h4>{{ getTexto('vermas-titulo') }}</h4>
+        <p>{{ getTexto('vermas-desc') }}</p>
+        <a href="https://github.com/suspinlaj" target="_blank" class="boton-principal">{{ getTexto('vermas-btn') }}</a>
+    </div>
+</section>

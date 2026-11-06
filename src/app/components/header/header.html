@@ -1,0 +1,31 @@
+<header>
+    <!-- Botones superiores interactivos -->
+    <div>
+        <!-- Si el tema es claro muestra la luna, si no el sol -->
+        <button type="button" (click)="cambiarTema()">
+            {{ temaClaro ? '☾' : '☀︎' }}
+        </button>
+        
+        <!-- Si el idioma actual es ES muestra EN para cambiar, y viceversa -->
+        <button type="button" (click)="cambiarIdioma()">
+            {{ dataService.idiomaActual() === 'es' ? 'EN' : 'ES' }}
+        </button>
+    </div>
+
+    <!-- Foto de perfil -->
+    <figure>
+        <img src="assets/images/fotocv.jpg" alt="Foto CV Susana Pineros">
+    </figure>
+
+    <!-- Presentación con innerHTML para inyectar los span naranjas y los br -->
+    <h1 [innerHTML]="getTexto('header-titulo')"></h1>
+    <p [innerHTML]="getTexto('header-desc')"></p>
+
+    <!-- Navegación dinámica -->
+    <nav>
+        <a href="#proyectos">{{ getTexto('nav-proyectos') }}</a>
+        <a href="#skills">{{ getTexto('nav-skills') }}</a>
+        <a href="#sobremi">{{ getTexto('nav-sobremi') }}</a>
+        <a href="#contacto">{{ getTexto('nav-contacto') }}</a>
+    </nav>
+</header>
