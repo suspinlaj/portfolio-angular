@@ -1,0 +1,50 @@
+<section id="sobremi">
+    <h2>{{ getTexto('sec-sobremi') }}</h2>
+
+    <div class="contenedor-sobremi">
+        <!-- Columna Izquierda-->
+        <div>
+            <!-- GIFs -->
+            <img src="assets/images/dib_modo_oscuro.gif" alt="Susana Ilustración" class="gif-sobremi gif-oscuro">
+            <img src="assets/images/dib_modo_claro.gif" alt="Susana Ilustración" class="gif-sobremi gif-claro">
+
+            <!-- Párrafo principal con innerHTML para los saltos de línea -->
+            <p [innerHTML]="getTexto('sobremi-texto')"></p>
+        </div>
+
+        <!-- Columna Derecha: Timeline -->
+        <div>
+            <h3>{{ getTexto('camino-h3') }}</h3>
+            <ul class="timeline">
+                <li>
+                    <strong>{{ getTexto('exp1-titulo') }}</strong>
+                    <ul>
+                        <li>{{ getTexto('exp1-li1') }}</li>
+                        <li>{{ getTexto('exp1-li2') }}</li>
+                        <li>{{ getTexto('exp1-li3') }}</li>
+                        <li>{{ getTexto('exp1-li4') }}</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>{{ getTexto('exp2-titulo') }}</strong>
+                    <ul>
+                        <li>{{ getTexto('exp2-li1') }}</li>
+                        <li>{{ getTexto('exp2-li2') }}</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>{{ getTexto('exp3-titulo') }}</strong>
+                    <ul>
+                        <li>{{ getTexto('exp3-li1') }}</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>{{ getTexto('exp4-titulo') }}</strong>
+                    <ul>
+                        <li>{{ getTexto('exp4-li1') }}</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

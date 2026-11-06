@@ -7,6 +7,22 @@ export class DataService {
   // guarda el idioma actual. Si cambia, actualiza 
   idiomaActual = signal<'es' | 'en'>('es');
 
+  // Control del modal de vídeo
+  modalAbierto = signal(false);
+  videoActual = signal('');
+
+  abrirModal(urlVideo: string) {
+    this.videoActual.set(urlVideo);
+    this.modalAbierto.set(true);
+    document.body.style.overflow = 'hidden'; // Evita que la web haga scroll por detrás
+  }
+
+  cerrarModal() {
+    this.modalAbierto.set(false);
+    setTimeout(() => this.videoActual.set(''), 300); // Limpia el vídeo tras la animación
+    document.body.style.overflow = 'auto'; // Devuelve el scroll
+  }
+
   // datos de proyectos
   private proyectosData: any = {
     "pedrapp": {
@@ -31,7 +47,7 @@ export class DataService {
             "./assets/images/capturas/pedrapp7.jpeg",
             "./assets/images/capturas/pedrapp8.jpeg",
         ],
-        demoUrl: "./assets/videos/video_pedrapp.mp4",
+        demoUrl: "/assets/videos/video_pedrapp.mp4",
         githubUrl: "https://github.com/suspinlaj/pedrapp"
     },
     "slimash": {
@@ -52,7 +68,7 @@ export class DataService {
             "./assets/images/capturas/slimash3.jpeg",
             "./assets/images/capturas/slimash4.jpeg",
         ],
-        demoUrl: "./assets/videos/video_slimash.mp4",
+        demoUrl: "/assets/videos/video_slimash.mp4",
         githubUrl: "https://github.com/suspinlaj/slimash"
     },
     "techbot": {
@@ -74,7 +90,7 @@ export class DataService {
             "./assets/images/capturas/techbot3.png",
             "./assets/images/capturas/techbot4.png",
         ],
-        demoUrl: "./assets/videos/video_techbot.mp4",
+        demoUrl: "/assets/videos/video_techbot.mp4",
         githubUrl: "https://github.com/suspinlaj/Tech-Bot"
     },
     "lqntd": {
@@ -96,7 +112,7 @@ export class DataService {
             "./assets/images/capturas/lqntd4.jpeg",
             "./assets/images/capturas/lqntd5.jpeg"
         ],
-        demoUrl: "./assets/videos/video_lqntd.mp4",
+        demoUrl: "/assets/videos/video_lqntd.mp4",
         githubUrl: "https://github.com/suspinlaj/lo-que-nunca-te-dije"
     }
   };
@@ -221,7 +237,8 @@ export class DataService {
   }
 
   //  lista de proyectos entera
-  getProyectos() {
+  // Devuelve la lista de proyectos entera
+  getProyectos(): any[] {
     return Object.values(this.proyectosData);
   }
 }

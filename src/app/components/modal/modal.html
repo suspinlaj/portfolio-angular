@@ -1,0 +1,16 @@
+@if (dataService.modalAbierto()) {
+    <!-- Usamos tu ID modal-video y tu clase modal-visible -->
+    <div id="modal-video" class="modal-visible" (click)="dataService.cerrarModal()">
+        
+        <!-- Usamos tu contenedor zoom-contenido -->
+        <div class="zoom-contenido" (click)="$event.stopPropagation()">
+            
+            <!-- Usamos tu botón de cerrar específico para video -->
+            <button id="cerrar-video" aria-label="Cerrar ventana" (click)="dataService.cerrarModal()">✖</button>
+            
+            <!-- Usamos tu ID reproductor-video -->
+            <video [src]="dataService.videoActual()" controls autoplay id="reproductor-video"></video>
+            
+        </div>
+    </div>
+}
