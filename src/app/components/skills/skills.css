@@ -1,11 +1,11 @@
-* --- HABILIDADES --- */
 .galeria-skills { 
     display: grid; 
     gap: 20px; 
     grid-template-columns: repeat(6, 1fr); 
 }
 
-#skills article { 
+/* Angular ya sabe que estos <article> son los de Skills, no hay que poner #skills */
+article { 
     background-color: var(--color-tarjeta); 
     border: 2px solid var(--color-borde); 
     border-radius: 12px; 
@@ -15,36 +15,35 @@
     transition: all 0.3s ease;
 }
 
-/* Colores únicos para cada skill */
-#skills article:nth-child(1) { --hover-color: var(--color-naranja); } 
-#skills article:nth-child(2) { --hover-color: var(--color-azul); }    
-#skills article:nth-child(3) { --hover-color: var(--color-rosa); }    
-#skills article:nth-child(4) { --hover-color: var(--color-verde); grid-column: 2 / span 2; }   
-#skills article:nth-child(5) { --hover-color: var(--color-amarillo); }
+article:nth-child(1) { --hover-color: var(--color-naranja); } 
+article:nth-child(2) { --hover-color: var(--color-azul); }    
+article:nth-child(3) { --hover-color: var(--color-rosa); }    
+article:nth-child(4) { --hover-color: var(--color-verde); grid-column: 2 / span 2; }   
+article:nth-child(5) { --hover-color: var(--color-amarillo); }
 
-#skills article:hover {
+article:hover {
     transform: translate(-4px, -4px);
     border-color: var(--hover-color);
     box-shadow: 10px 10px 0px var(--hover-color);
 }
 
-#skills h3 { 
+h3 { 
     font-size: 16px; 
     margin-bottom: 16px; 
     color: var(--hover-color); 
 }
 
-#skills ul { 
+ul { 
     list-style: none; 
 }
 
-#skills li { 
+li { 
     margin-bottom: 8px; 
     font-size: 14px; 
     color: var(--color-texto-secundario); 
 }
 
-#skills li::before { 
+li::before { 
     content: "✿"; 
     margin-right: 8px; 
     color: var(--hover-color); 

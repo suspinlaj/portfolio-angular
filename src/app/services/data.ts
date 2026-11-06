@@ -4,26 +4,113 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
-  // guarda el idioma actual. Si cambia, actualiza 
-  idiomaActual = signal<'es' | 'en'>('es');
+  
+  // --- Idioma y Tema ---
+  idiomaActual = signal<'es' | 'en'>((localStorage.getItem('idioma') as 'es' | 'en') || 'es');
+  temaClaro = signal<boolean>(localStorage.getItem('tema') === 'claro');
 
-  // Control del modal de vídeo
-  modalAbierto = signal(false);
-  videoActual = signal('');
-
-  abrirModal(urlVideo: string) {
-    this.videoActual.set(urlVideo);
-    this.modalAbierto.set(true);
-    document.body.style.overflow = 'hidden'; // Evita que la web haga scroll por detrás
+  // --- SIGNALS DE MODALES ---
+  proyectoSeleccionado = signal<any | null>(null);
+  
+  videoAbierto = signal(false);
+  urlVideoActual = signal('');
+  
+  zoomAbierto = signal(false);
+  arrayZoomActual = signal<string[]>([]);
+  indiceZoomActual = signal(0);
+  
+  constructor() { 
+    if (this.temaClaro()) {
+      document.body.classList.add('tema-claro');
+    }
   }
 
-  cerrarModal() {
-    this.modalAbierto.set(false);
-    setTimeout(() => this.videoActual.set(''), 300); // Limpia el vídeo tras la animación
-    document.body.style.overflow = 'auto'; // Devuelve el scroll
+  // --- GETTERS ---
+  get colorActual() {
+    return this.proyectoSeleccionado()?.color || 'var(--color-naranja)';
   }
 
-  // datos de proyectos
+  // --- FUNCIONES DE CONFIGURACIÓN ---
+  toggleIdioma() {
+    const nuevoIdioma = this.idiomaActual() === 'es' ? 'en' : 'es';
+    this.idiomaActual.set(nuevoIdioma);
+    localStorage.setItem('idioma', nuevoIdioma);
+  }
+
+  toggleTema() {
+    const esClaro = !this.temaClaro();
+    this.temaClaro.set(esClaro);
+    
+    if (esClaro) {
+      document.body.classList.add('tema-claro');
+      localStorage.setItem('tema', 'claro');
+    } else {
+      document.body.classList.remove('tema-claro');
+      localStorage.setItem('tema', 'oscuro');
+    }
+  }
+
+  getTexto(clave: string): string {
+    const idioma = this.idiomaActual();
+    return this.traducciones[idioma][clave] || clave;
+  }
+
+  getProyectos(): any[] {
+    return Object.values(this.proyectosData);
+  }
+
+  // --- FUNCIONES MODAL PRINCIPAL ---
+  abrirModalPrincipal(proyecto: any) {
+    this.proyectoSeleccionado.set(proyecto);
+    document.body.style.overflow = 'hidden';
+  }
+
+  cerrarModalPrincipal() {
+    this.proyectoSeleccionado.set(null);
+    document.body.style.overflow = 'auto';
+  }
+
+  // --- FUNCIONES VIDEO ---
+  abrirVideo(url: string, color: string) {
+    this.urlVideoActual.set(url);
+    this.videoAbierto.set(true);
+    document.documentElement.style.setProperty('--color-modal-actual', color);
+  }
+
+  cerrarVideo() {
+    this.videoAbierto.set(false);
+    setTimeout(() => this.urlVideoActual.set(''), 300);
+  }
+
+  // --- FUNCIONES ZOOM ---
+  abrirZoom(arrayFotos: string[], index: number, color: string) {
+    this.arrayZoomActual.set(arrayFotos);
+    this.indiceZoomActual.set(index);
+    this.zoomAbierto.set(true);
+    document.documentElement.style.setProperty('--color-modal-actual', color);
+  }
+
+  cerrarZoom() {
+    this.zoomAbierto.set(false);
+  }
+
+  siguienteZoom(event: Event) {
+    event.stopPropagation();
+    const array = this.arrayZoomActual();
+    let index = this.indiceZoomActual();
+    index = (index === array.length - 1) ? 0 : index + 1;
+    this.indiceZoomActual.set(index);
+  }
+
+  anteriorZoom(event: Event) {
+    event.stopPropagation();
+    const array = this.arrayZoomActual();
+    let index = this.indiceZoomActual();
+    index = (index === 0) ? array.length - 1 : index - 1;
+    this.indiceZoomActual.set(index);
+  }
+
+  // --- DATOS DEL PORTFOLIO ---
   private proyectosData: any = {
     "pedrapp": {
         titulo: "★ PedrApp",
@@ -117,7 +204,6 @@ export class DataService {
     }
   };
 
-  // traducciones
   private traducciones: any = {
     es: {
         "header-titulo": 'Hola<span class="punto-naranja">!</span> Soy Susana Pineros Lajara<span class="punto-naranja">.</span>',
@@ -222,23 +308,4 @@ export class DataService {
         "footer-texto": 'Made with lots of code and patience by Susana Pineros'
     }
   };
-
-  constructor() { }
-
-  // Cambia de ES a EN y viceversa
-  toggleIdioma() {
-    this.idiomaActual.update(idioma => idioma === 'es' ? 'en' : 'es');
-  }
-
-  // Devuelve el texto traducido según la clave 
-  getTexto(clave: string): string {
-    const idioma = this.idiomaActual();
-    return this.traducciones[idioma][clave] || clave;
-  }
-
-  //  lista de proyectos entera
-  // Devuelve la lista de proyectos entera
-  getProyectos(): any[] {
-    return Object.values(this.proyectosData);
-  }
 }

@@ -30,7 +30,7 @@ h1, h2, h3, h4 {
 
 @font-face {
     font-family: 'Fraunces';
-    src: url('/assets/fonts/fraunces.woff2') format('woff2'); /* Ruta corregida */
+    src: url('/assets/fonts/fraunces.woff2') format('woff2'); 
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -38,7 +38,7 @@ h1, h2, h3, h4 {
 
 @font-face {
     font-family: 'Plus Jakarta Sans';
-    src: url('/assets/fonts/jakarta.woff2') format('woff2'); /* Ruta corregida */
+    src: url('/assets/fonts/jakarta.woff2') format('woff2'); 
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -342,4 +342,56 @@ body.tema-claro #reproductor-video {
     .galeria, .galeria-skills { grid-template-columns: 1fr; }
     #skills article, #skills article:nth-child(4) { grid-column: 1 / span 1; }
     .contenedor-sobremi { flex-direction: column; }
+}
+
+/* --- HABILIDADES (GLOBAL) --- */
+.galeria-skills { 
+    display: grid; 
+    gap: 20px; 
+    grid-template-columns: repeat(6, 1fr); 
+}
+
+#skills article { 
+    background-color: var(--color-tarjeta); 
+    border: 2px solid var(--color-borde); 
+    border-radius: 12px; 
+    grid-column: span 2; 
+    padding: 20px;
+    box-shadow: 6px 6px 0px var(--hover-color);
+    transition: all 0.3s ease;
+}
+
+/* Colores únicos para cada skill */
+#skills article:nth-child(1) { --hover-color: var(--color-naranja); } 
+#skills article:nth-child(2) { --hover-color: var(--color-azul); }    
+#skills article:nth-child(3) { --hover-color: var(--color-rosa); }    
+#skills article:nth-child(4) { --hover-color: var(--color-verde); grid-column: 2 / span 2; }   
+#skills article:nth-child(5) { --hover-color: var(--color-amarillo); }
+
+#skills article:hover {
+    transform: translate(-4px, -4px);
+    border-color: var(--hover-color);
+    box-shadow: 10px 10px 0px var(--hover-color);
+}
+
+#skills h3 { 
+    font-size: 16px; 
+    margin-bottom: 16px; 
+    color: var(--hover-color); 
+}
+
+#skills ul { 
+    list-style: none; 
+}
+
+#skills li { 
+    margin-bottom: 8px; 
+    font-size: 14px; 
+    color: var(--color-texto-secundario); 
+}
+
+#skills li::before { 
+    content: "✿"; 
+    margin-right: 8px; 
+    color: var(--hover-color); 
 }
