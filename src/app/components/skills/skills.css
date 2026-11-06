@@ -1,11 +1,11 @@
-* --- HABILIDADES --- */
+/* --- HABILIDADES --- */
 .galeria-skills { 
     display: grid; 
     gap: 20px; 
     grid-template-columns: repeat(6, 1fr); 
 }
 
-#skills article { 
+.galeria-skills article { 
     background-color: var(--color-tarjeta); 
     border: 2px solid var(--color-borde); 
     border-radius: 12px; 
@@ -16,35 +16,35 @@
 }
 
 /* Colores únicos para cada skill */
-#skills article:nth-child(1) { --hover-color: var(--color-naranja); } 
-#skills article:nth-child(2) { --hover-color: var(--color-azul); }    
-#skills article:nth-child(3) { --hover-color: var(--color-rosa); }    
-#skills article:nth-child(4) { --hover-color: var(--color-verde); grid-column: 2 / span 2; }   
-#skills article:nth-child(5) { --hover-color: var(--color-amarillo); }
+.galeria-skills article:nth-child(1) { --hover-color: var(--color-naranja); } 
+.galeria-skills article:nth-child(2) { --hover-color: var(--color-azul); }    
+.galeria-skills article:nth-child(3) { --hover-color: var(--color-rosa); }    
+.galeria-skills article:nth-child(4) { --hover-color: var(--color-verde); grid-column: 2 / span 2; }   
+.galeria-skills article:nth-child(5) { --hover-color: var(--color-amarillo); }
 
-#skills article:hover {
+.galeria-skills article:hover {
     transform: translate(-4px, -4px);
     border-color: var(--hover-color);
     box-shadow: 10px 10px 0px var(--hover-color);
 }
 
-#skills h3 { 
+.galeria-skills h3 { 
     font-size: 16px; 
     margin-bottom: 16px; 
     color: var(--hover-color); 
 }
 
-#skills ul { 
+.galeria-skills ul { 
     list-style: none; 
 }
 
-#skills li { 
+.galeria-skills li { 
     margin-bottom: 8px; 
     font-size: 14px; 
     color: var(--color-texto-secundario); 
 }
 
-#skills li::before { 
+.galeria-skills li::before { 
     content: "✿"; 
     margin-right: 8px; 
     color: var(--hover-color); 

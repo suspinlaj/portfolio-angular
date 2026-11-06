@@ -1,12 +1,11 @@
 <section id="proyectos">
-    <h2>{{ getTexto('sec-proyectos') }}</h2>
+    <h2 appAnimacionScroll>{{ getTexto('sec-proyectos') }}</h2>
 
-    <!-- Cuadrícula de proyectos generada automáticamente -->
     <div class="galeria">
         
-        <!-- Angular repetirá este <article> por cada proyecto en tu DataService -->
         @for (proyecto of proyectos; track proyecto.titulo) {
-        <article>
+        <article appAnimacionScroll (click)="dataService.abrirModalPrincipal(proyecto)">
+            
             <img [src]="proyecto.imagenPrincipal" [alt]="'Captura de ' + proyecto.titulo">
             <h3>{{ proyecto.titulo }}</h3>
             
@@ -14,18 +13,22 @@
             <p>{{ proyecto.descripcionLarga[dataService.idiomaActual()] }}</p>
             
             <ul>
-                <!-- Bucle anidado para imprimir cada tecnología (tag) -->
                 @for (tech of proyecto.tecnologias[dataService.idiomaActual()]; track tech) {
                 <li>{{ tech }}</li>
                 }
             </ul>
 
             <div>
-                <a href="#" class="btn-abrir-video" (click)="dataService.abrirModal(proyecto.demoUrl); $event.preventDefault()">
+                <a class="btn-abrir-video" style="cursor: pointer;"
+                (click)="dataService.abrirVideo(proyecto.demoUrl, proyecto.color); $event.stopPropagation()">
                     {{ getTexto('btn-video') }}
                 </a>
-                <a [href]="proyecto.githubUrl" target="_blank">{{ getTexto('btn-github') }}</a>
+                
+                <a [href]="proyecto.githubUrl" target="_blank" (click)="$event.stopPropagation()">
+                    {{ getTexto('btn-github') }}
+                </a>
             </div>
+
         </article>
         }
 
