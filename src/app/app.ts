@@ -3,9 +3,11 @@ import { HeaderComponent } from './components/header/header';
 import { ProyectosComponent } from './components/proyectos/proyectos';
 import { SkillsComponent } from './components/skills/skills';
 import { SobremiComponent } from './components/sobremi/sobremi';
+import { FooterComponent } from './components/footer/footer';
+import { ContactoComponent } from './components/contacto/contacto';
 
 @Component({
-  imports: [HeaderComponent, ProyectosComponent, SkillsComponent, SobremiComponent],
+  imports: [HeaderComponent, ProyectosComponent, SkillsComponent, SobremiComponent, FooterComponent, ContactoComponent],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
