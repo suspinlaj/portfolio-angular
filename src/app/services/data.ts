@@ -4,10 +4,10 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
-  // Signal que guarda el idioma actual. Si cambia, Angular actualiza toda la web al instante.
+  // guarda el idioma actual. Si cambia, actualiza 
   idiomaActual = signal<'es' | 'en'>('es');
 
-  // Tus datos de proyectos
+  // datos de proyectos
   private proyectosData: any = {
     "pedrapp": {
         titulo: "★ PedrApp",
@@ -101,7 +101,7 @@ export class DataService {
     }
   };
 
-  // Tus traducciones
+  // traducciones
   private traducciones: any = {
     es: {
         "header-titulo": 'Hola<span class="punto-naranja">!</span> Soy Susana Pineros Lajara<span class="punto-naranja">.</span>',
@@ -214,13 +214,13 @@ export class DataService {
     this.idiomaActual.update(idioma => idioma === 'es' ? 'en' : 'es');
   }
 
-  // Devuelve el texto traducido según la clave (ej: getTexto('nav-proyectos'))
+  // Devuelve el texto traducido según la clave 
   getTexto(clave: string): string {
     const idioma = this.idiomaActual();
     return this.traducciones[idioma][clave] || clave;
   }
 
-  // Devuelve la lista de proyectos entera
+  //  lista de proyectos entera
   getProyectos() {
     return Object.values(this.proyectosData);
   }
