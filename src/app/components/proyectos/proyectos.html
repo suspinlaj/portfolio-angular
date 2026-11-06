@@ -21,7 +21,9 @@
             </ul>
 
             <div>
-                <a href="#" class="btn-abrir-video">{{ getTexto('btn-video') }}</a>
+                <a href="#" class="btn-abrir-video" (click)="dataService.abrirModal(proyecto.demoUrl); $event.preventDefault()">
+                    {{ getTexto('btn-video') }}
+                </a>
                 <a [href]="proyecto.githubUrl" target="_blank">{{ getTexto('btn-github') }}</a>
             </div>
         </article>

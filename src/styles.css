@@ -1,1 +1,419 @@
-/* You can add global styles to this file, and also import other style files */
+/* --- VARIABLES GLOBALES ---  */
+
+@font-face {
+    font-family: 'Fraunces';
+    src: url('/assets/fonts/fraunces.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('/assets/fonts/jakarta.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    /* --- Paleta base oscura --- */
+    --color-fondo: #1a1a24; 
+    --color-tarjeta: #232330; 
+    --color-texto: #F4F0EA; 
+    --color-texto-secundario: #a0a0b0; 
+    --color-borde: #4a4a5e; 
+    
+    /* --- Colores  --- */
+    --color-naranja: #E29578;
+    --color-azul: #9BB8D7;
+    --color-amarillo: #E2C275;
+    --color-rosa: #CBAACB;
+    --color-verde: #A3C9A8;
+
+    --color-principal: var(--color-naranja); 
+
+    /* --- Colores Secciones --- */
+    --color-sombra-1: var(--color-azul);     /* Proyectos */
+    --color-sombra-2: var(--color-amarillo); /* Skills */
+    --color-sombra-3: var(--color-rosa);     /* Sobre Mí */
+    --color-sombra-4: var(--color-verde);    /* Contacto */
+}
+
+/* --- PALETA MODO CLARO -- */
+body.tema-claro {
+    --color-fondo: #F8F9FA; 
+    --color-tarjeta: #FFFFFF; 
+    --color-texto: #1a1a24; 
+    --color-texto-secundario: #4a4a5e; 
+    --color-borde: #1a1a24; 
+    
+    --color-naranja: #FADBD8; 
+    --color-azul: #D6EAF8; 
+    --color-amarillo: #FCF3CF; 
+    --color-rosa: #EBDEF0; 
+    --color-verde: #D5F5E3; 
+}
+
+/* --- RESETEO Y ESTILOS BASE --- */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+html { 
+    scroll-behavior: smooth; 
+}
+
+body {
+    background-color: var(--color-fondo); 
+    color: var(--color-texto);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 { 
+    font-family: 'Fraunces', serif; 
+    font-weight: 700; 
+}
+
+/* signos de puntuación desde el HTML */
+.punto-naranja {
+    color: var(--color-principal);
+}
+
+/* --- SCROLL --- */
+.oculto-scroll {
+    opacity: 0;
+    transform: translateY(40px); 
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.visible-scroll {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- CABECERA Y NAVEGACIÓN --- */
+header { 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 24px; 
+}
+
+/* --- Botones Tema e Idioma --- */
+header div { 
+    position: absolute; 
+    top: 20px; 
+    right: 20px; 
+}
+
+header div button { 
+    background: var(--color-tarjeta); 
+    color: var(--color-texto); 
+    border: 2px solid var(--color-borde); 
+    padding: 8px 12px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    box-shadow: 2px 2px 0px var(--color-principal); 
+    transition: all 0.2s;
+}
+
+header div button:hover { 
+    transform: translate(2px, 2px); 
+    box-shadow: 0px 0px 0px transparent; 
+    background-color: var(--color-principal);
+    border-color: var(--color-principal); 
+    color: var(--color-fondo); 
+}
+
+/* --- Foto de Portada --- */
+header img {
+    width: 260px; 
+    aspect-ratio: 1/1; 
+    object-fit: cover; 
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    border: 3px solid var(--color-principal);
+    box-shadow: 12px 12px 0px var(--color-principal); 
+    transition: all 0.5s ease-in-out;
+}
+
+header img:hover { 
+    transform: translate(-4px, -4px);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    border-color: var(--color-principal);
+}
+
+header h1 { 
+    font-size: 42px; 
+    text-align: center; 
+}
+
+header p { 
+    font-size: 18px; 
+    text-align: center; 
+    max-width: 600px; 
+    color: var(--color-texto-secundario); 
+}
+
+/* --- Menú de Navegación --- */
+nav { 
+    display: flex; 
+    gap: 16px; 
+    margin-top: 16px; 
+}
+
+nav a { 
+    text-decoration: none; 
+    color: var(--color-texto); 
+    padding: 10px 20px; 
+    background: var(--color-tarjeta); 
+    border: 2px solid var(--color-borde); 
+    border-radius: 30px; 
+    font-size: 15px; 
+    font-weight: 600; 
+    transition: all 0.2s; 
+}
+
+nav a:nth-child(1) { --nav-color: var(--color-sombra-1); box-shadow: 4px 4px 0px var(--nav-color); }
+nav a:nth-child(2) { --nav-color: var(--color-sombra-2); box-shadow: 4px 4px 0px var(--nav-color); }
+nav a:nth-child(3) { --nav-color: var(--color-sombra-3); box-shadow: 4px 4px 0px var(--nav-color); }
+nav a:nth-child(4) { --nav-color: var(--color-sombra-4); box-shadow: 4px 4px 0px var(--nav-color); }
+
+nav a:hover { 
+    transform: translate(4px, 4px); 
+    box-shadow: 0px 0px 0px transparent;
+    background: var(--nav-color); 
+    border-color: var(--nav-color); 
+    color: var(--color-fondo);
+}
+
+/* --- ESTRUCTURA Y TÍTULOS DE SECCIONES --- */
+section { 
+    padding: 100px 20px; 
+    max-width: 1050px; 
+    margin: 0 auto; 
+}
+
+/* linea de títulos */
+section h2 { 
+    font-size: 32px; 
+    margin-bottom: 40px; 
+    position: relative;
+    display: inline-block;
+}
+
+section h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+}
+
+#proyectos h2 { color: var(--color-sombra-1); }
+#proyectos h2::after { background-color: var(--color-sombra-1); }
+
+#skills h2 { color: var(--color-sombra-2); }
+#skills h2::after { background-color: var(--color-sombra-2); }
+
+#sobremi h2 { color: var(--color-sombra-3); }
+#sobremi h2::after { background-color: var(--color-sombra-3); }
+
+#contacto h2 { color: var(--color-sombra-4); }
+#contacto h2::after { background-color: var(--color-sombra-4); }
+
+/* --- FOOTER --- */
+footer { 
+    text-align: center; 
+    padding: 40px; 
+    font-size: 14px;
+    font-weight: 600; 
+    color: var(--color-texto-secundario); 
+    border-top: 2px solid var(--color-naranja);
+}
+
+/* COLOREAR TARJETAS Y VENTANA MODAL  */
+body.tema-claro #proyectos article,
+body.tema-claro #skills article {
+    background-color: var(--hover-color) !important; 
+    border-color: var(--color-texto) !important; 
+    box-shadow: 6px 6px 0px var(--color-texto) !important; 
+}
+
+body.tema-claro article:hover li {
+    border-color: var(--color-texto) !important;
+    color: var(--color-texto) !important;
+}
+
+body.tema-claro #proyectos article:hover,
+body.tema-claro #skills article:hover {
+    border-color: var(--color-texto) !important; 
+    box-shadow: 10px 10px 0px var(--color-texto) !important; 
+}
+
+body.tema-claro .modal-contenido {
+    background-color: var(--color-modal-actual) !important; 
+    border-color: var(--color-texto) !important; 
+    box-shadow: 12px 12px 0px var(--color-texto) !important; 
+}
+
+body.tema-claro article img,
+body.tema-claro .coverflow-slide {
+    background-color: #FFFFFF !important; 
+    border-color: var(--color-borde) !important; 
+}
+
+body.tema-claro #proyectos article:hover img {
+    border-color: var(--color-borde) !important; 
+}
+
+body.tema-claro #proyectos article h3,
+body.tema-claro #proyectos article p,
+body.tema-claro #proyectos article li,
+body.tema-claro #proyectos article a,
+body.tema-claro #skills article h3,
+body.tema-claro #skills article li {
+    color: var(--color-texto) !important;
+}
+
+body.tema-claro #proyectos article li,
+body.tema-claro #proyectos article a {
+    border-color: var(--color-texto) !important; 
+}
+
+body.tema-claro #skills li::before {
+    color: var(--color-texto) !important;
+}
+
+body.tema-claro #modal-cuerpo h3,
+body.tema-claro #modal-cuerpo li {
+    color: var(--color-texto) !important;
+    border-color: var(--color-texto) !important;
+}
+
+/* FLECHAS, BOTÓN CERRAR Y BOTONES DE ACCIÓN */
+body.tema-claro .slider-btn,
+body.tema-claro #cerrar-modal,
+body.tema-claro #cerrar-zoom {
+    border-color: var(--color-texto) !important; 
+    color: var(--color-texto) !important; 
+    box-shadow: 2px 2px 0px var(--color-texto) !important;
+}
+
+body.tema-claro .slider-btn:hover,
+body.tema-claro #cerrar-modal:hover,
+body.tema-claro #cerrar-zoom:hover {
+    background-color: var(--color-texto) !important;
+    color: var(--color-fondo) !important;
+    box-shadow: 0px 0px 0px transparent !important;
+}
+
+body.tema-claro .boton-principal,
+body.tema-claro .modal-botones a {
+    background-color: var(--color-tarjeta) !important; 
+    border: 2px solid var(--color-texto) !important; 
+    color: var(--color-texto) !important;
+    box-shadow: 4px 4px 0px var(--color-texto) !important;
+}
+
+body.tema-claro .boton-principal:hover,
+body.tema-claro .modal-botones a:hover {
+    background-color: var(--color-texto) !important;
+    color: var(--color-fondo) !important;
+    box-shadow: 0px 0px 0px transparent !important;
+}
+
+/* IMAGEN AMPLIADA */
+body.tema-claro #img-zoom {
+    border-color: var(--color-texto) !important;
+}
+
+/* --- SOMBRA BOTONES --- */
+body.tema-claro .ver-mas-proyectos .boton-principal,
+body.tema-claro #contacto .boton-principal {
+    box-shadow: 4px 4px 0px var(--btn-color) !important; 
+}
+
+body.tema-claro .ver-mas-proyectos .boton-principal:hover,
+body.tema-claro #contacto .boton-principal:hover {
+    background-color: var(--btn-color) !important; 
+    border-color: var(--btn-color) !important;
+    color: var(--color-fondo) !important; 
+    box-shadow: 0px 0px 0px transparent !important;
+}
+
+/* FLECHAS, BOTÓN CERRAR Y BOTONES DE ACCIÓN */
+body.tema-claro .slider-btn,
+body.tema-claro #cerrar-modal,
+body.tema-claro #cerrar-zoom,
+body.tema-claro .zoom-btn {
+    border-color: var(--color-texto) !important; 
+    color: var(--color-texto) !important; 
+    box-shadow: 2px 2px 0px var(--color-texto) !important;
+}
+
+body.tema-claro .slider-btn:hover,
+body.tema-claro #cerrar-modal:hover,
+body.tema-claro #cerrar-zoom:hover,
+body.tema-claro .zoom-btn:hover {
+    background-color: var(--color-texto) !important;
+    color: var(--color-fondo) !important;
+    box-shadow: 0px 0px 0px transparent !important;
+}
+
+/* --- BOTONES DEL HEADER (TEMA E IDIOMA) --- */
+body.tema-claro header div button {
+    border-color: var(--color-texto) !important; 
+    color: var(--color-texto) !important; 
+    box-shadow: 2px 2px 0px var(--color-principal) !important;
+}
+
+body.tema-claro header div button:hover {
+    background-color: var(--color-principal) !important; 
+    border-color: var(--color-principal) !important;
+    color: var(--color-fondo) !important;
+    box-shadow: 0px 0px 0px transparent !important;
+}
+
+/* --- GIF --- */
+body.tema-claro .gif-oscuro {
+    display: none !important;
+}
+
+body.tema-claro .gif-claro {
+    display: block !important;
+}
+
+/* Suma #cerrar-video a la lista de botones */
+body.tema-claro .slider-btn,
+body.tema-claro #cerrar-modal,
+body.tema-claro #cerrar-zoom,
+body.tema-claro #cerrar-video,
+body.tema-claro .zoom-btn {
+    border-color: var(--color-texto) !important; 
+    color: var(--color-texto) !important; 
+    box-shadow: 2px 2px 0px var(--color-texto) !important;
+}
+
+body.tema-claro .slider-btn:hover,
+body.tema-claro #cerrar-modal:hover,
+body.tema-claro #cerrar-zoom:hover,
+body.tema-claro #cerrar-video:hover,
+body.tema-claro .zoom-btn:hover {
+    background-color: var(--color-texto) !important;
+    color: var(--color-fondo) !important;
+    box-shadow: 0px 0px 0px transparent !important;
+}
+
+/* Suma el reproductor de video para que el borde se vuelva oscuro en modo claro */
+body.tema-claro #img-zoom,
+body.tema-claro #reproductor-video {
+    border-color: var(--color-texto) !important;
+}
