@@ -1,0 +1,9 @@
+/* --- FOOTER --- */
+footer { 
+    text-align: center; 
+    padding: 40px; 
+    font-size: 14px;
+    font-weight: 600; 
+    color: var(--color-texto-secundario); 
+    border-top: 2px solid var(--color-naranja);
+}

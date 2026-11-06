@@ -1,12 +1,16 @@
-<!-- Solo se renderiza si el modal está abierto -->
 @if (dataService.modalAbierto()) {
-    <div id="modal-proyecto" class="modal-activa" (click)="dataService.cerrarModal()">
-        <!-- El stopPropagation evita que al hacer clic dentro del vídeo se cierre el modal -->
-        <div class="modal-contenido" (click)="$event.stopPropagation()">
-            <button id="cerrar-modal" aria-label="Cerrar ventana" (click)="dataService.cerrarModal()">✖</button>
-            <div id="modal-cuerpo">
-                <video [src]="dataService.videoActual()" controls autoplay></video>
-            </div>
+    <!-- Usamos tu ID modal-video y tu clase modal-visible -->
+    <div id="modal-video" class="modal-visible" (click)="dataService.cerrarModal()">
+        
+        <!-- Usamos tu contenedor zoom-contenido -->
+        <div class="zoom-contenido" (click)="$event.stopPropagation()">
+            
+            <!-- Usamos tu botón de cerrar específico para video -->
+            <button id="cerrar-video" aria-label="Cerrar ventana" (click)="dataService.cerrarModal()">✖</button>
+            
+            <!-- Usamos tu ID reproductor-video -->
+            <video [src]="dataService.videoActual()" controls autoplay id="reproductor-video"></video>
+            
         </div>
     </div>
 }
